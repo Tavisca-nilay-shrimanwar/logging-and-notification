@@ -14,14 +14,15 @@ import watchtower
 # "logs:PutLogEvents"
 
 class Logger():
-     def __init__(self, logger_name="backup-restore") -> None:
+     def __init__(self, **kwargs) -> None:
           logging.basicConfig(level=logging.INFO)
-          logging.getLogger('botocore').setLevel(logging.ERROR)
+          logger_name = kwargs["logger_name"]
           logger = logging.getLogger(logger_name)
+          
           handler = watchtower.CloudWatchLogHandler(
-               log_group="/aws/custom",
-               stream_name="{logger_name}-{strftime:%Y-%m-%d} [{strftime:%H.%M.%S UTC}]",
-               create_log_group=False,
+               log_group = kwargs["log_group_name"],
+               stream_name = "{logger_name}-{strftime:%Y-%m-%d} [{strftime:%H.%M.%S UTC}]",
+               create_log_group = True,
           )
 
           logger.addHandler(handler)
@@ -31,7 +32,11 @@ class Logger():
           return self.logger
 
 ################## Usage Example ######################################
-# logger = Logger().get_logger()
+# logger = Logger(
+#      logger_name = "test",
+#      log_group_name = "my-lg-grp"
+# ).get_logger()
+#
 # logger.debug("Harmless debug Message")
 # logger.info("Just an information")
 # logger.warning("Its a Warning")

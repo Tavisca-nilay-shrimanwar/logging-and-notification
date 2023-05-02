@@ -88,15 +88,15 @@ class Email():
         """.format(content=content)
 
 ################## Usage Example ######################################
-email = Email(
-    sender="ganesh.lohar@tavisca.com",
-    receiver="nilay.shrimanwar@tavisca.com"
-)
-email.send_success_email(
-    subject="Backup success",
-    content="This is a success email details"
-)
-email.send_failure_email(
-    subject="Backup failed",
-    content="This is a failure email details"
-)
+# email = Email(
+#     sender="ganesh.lohar@tavisca.com",
+#     receiver="nilay.shrimanwar@tavisca.com"
+# )
+# email.send_success_email(
+#     subject="Backup success",
+#     content="This is a success email details"
+# )
+# email.send_failure_email(
+#     subject="Backup failed",
+#     content="This is a failure email details"
+# )
